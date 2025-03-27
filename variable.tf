@@ -1,4 +1,4 @@
 variable "env" {
-  default = "prd"
+  default = "dev"
   type = string
 }
