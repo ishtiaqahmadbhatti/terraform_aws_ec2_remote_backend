@@ -2,7 +2,7 @@ resource "aws_default_vpc" "default" {
 }
 
 resource "aws_security_group" "terra_user_to_connect" {
-  name        = "terraform_user_to_connect"
+  name        = "${var.env}_terraform_user_to_connect"
   description = "Allow user to connect"
   vpc_id      = aws_default_vpc.default.id
   ingress {
@@ -35,5 +35,9 @@ resource "aws_security_group" "terra_user_to_connect" {
     to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags = {
+    Name = "${var.env}_terraform_user_to_connect"
+    Envirnoment = var.env
   }
 }
